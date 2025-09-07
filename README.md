@@ -20,3 +20,4 @@ Features:
  - Logout, Left and Join notification
  - Gender Selection
  - Room activity list
+ - Dark/Light theme
