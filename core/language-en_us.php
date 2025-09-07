@@ -72,7 +72,7 @@ $lang["login"]["title"]="Login";
 $lang["login"]["username"]="Username";
 $lang["login"]["password"]="Password";
 
-$lang["register"]["title"]="Manage Users";
+$lang["register"]["title"]="Register";
 $lang["register"]["username"]="Username";
 $lang["register"]["password"]="Password";
 $lang["register"]["name"]="Name";

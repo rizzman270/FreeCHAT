@@ -72,7 +72,7 @@ $lang["login"]["title"]="登录";
 $lang["login"]["username"]="用户名";
 $lang["login"]["password"]="密码";
 
-$lang["register"]["title"]="管理用户";
+$lang["register"]["title"]="注册";
 $lang["register"]["username"]="用户名";
 $lang["register"]["password"]="密码";
 $lang["register"]["name"]="姓名";
