@@ -26,6 +26,26 @@
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>
 			<div class="w3-bottom w3-theme-white w3-chatcontainer">
+				<div class="emoji-container">
+					<div class="w3-border w3-border-theme-light emoji-popup" id="emoji-popup">
+						<div class="w3-theme tabs">
+		';
+
+		foreach ($emojiCategories as $category => $emojis) echo '<div class="tab">'. $category .'</div>';
+
+		echo '
+					</div>
+		';
+
+		foreach ($emojiCategories as $category => $emojis) {
+			echo '<div class="w3-theme-white emoji-grid">';
+			foreach ($emojis as $emoji) echo '<div class="emoji">'. $emoji .'</div>';
+			echo '</div>';
+		}
+
+		echo '
+					</div>
+				</div>
 				<form id="chatForm">
 					<audio id="joinSound" src="assets/online.wav"></audio>
 					<audio id="leaveSound" src="assets/offline.wav"></audio>
@@ -60,27 +80,6 @@
 
 	echo '
 				</form>
-			</div>
-
-			<div class="emoji-container">
-				<div class="w3-border w3-border-theme-light emoji-popup" id="emoji-popup">
-					<div class="w3-theme tabs">
-		';
-
-		foreach ($emojiCategories as $category => $emojis) echo '<div class="tab">'. $category .'</div>';
-
-		echo '
-					</div>
-		';
-
-		foreach ($emojiCategories as $category => $emojis) {
-			echo '<div class="w3-theme-white emoji-grid">';
-			foreach ($emojis as $emoji) echo '<div class="emoji">'. $emoji .'</div>';
-			echo '</div>';
-		}
-
-		echo '
-				</div>
 			</div>
 	';
 ?>

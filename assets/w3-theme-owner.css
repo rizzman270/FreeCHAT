@@ -40,5 +40,5 @@ html { overflow: scroll; -ms-overflow-style: none; scrollbar-width: none; }
 .w3-input-theme{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;}
 .w3-select-theme{padding:9px 0;border:none;border-bottom:1px solid #ccc}
 
-@media (max-width:500px){.w3-box{left:0px;width:100%;} .w3-chatfield {height: 80%;} .w3-chatcontainer {width: 100%;}}
+@media (max-width:999px){.w3-box{left:0px;width:100%;} .w3-chatfield {height: 75%;} .w3-chatcontainer {width: 100%;}}
 @media (min-width:1000px){.w3-box{left:150px;width:100%;} .w3-chatfield {height: 90%;} .w3-chatcontainer {width: calc(100% - 300px);}
