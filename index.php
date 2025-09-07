@@ -114,8 +114,8 @@
 						if (data.length > lastCount) {
 							let last = data[data.length - 1];
 							if (last.name === "Alice") {
-								if (last.text.includes("joined")) document.getElementById("joinSound").play();
-								if (last.text.includes("left")) document.getElementById("leaveSound").play();
+								if (last.text.includes("<?=$lang["message"]["joined"]?>")) document.getElementById("joinSound").play();
+								if (last.text.includes("<?=$lang["message"]["left"]?>")) document.getElementById("leaveSound").play();
 							}
 						}
 						lastCount = data.length;
