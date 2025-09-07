@@ -12,13 +12,14 @@
 		$users[$user]["name"]=$name;
 		$gen=$_POST["gender"];
 		$users[$user]["gender"]=$gen;
+		$theme=$_POST["theme"];
+		$users[$user]["theme"]=$theme;
 		$language=$_POST["language"];
 		$users[$user]["language"]=$language;
 		save_users($users);
 		$_SESSION['lang']=$language;
 		$message=$lang["message"]["profile"];
 	}
-
 
 	if ($users[$user]["gender"] == "fa-venus-mars")
 		$gender_select1="selected";
@@ -54,6 +55,11 @@
 	else if ($users[$user]["language"] == "zh_cn")
 		$lang_select3="selected";
 
+	if ($users[$user]["theme"] == "dark")
+		$lang_theme1="selected";
+	else if ($users[$user]["theme"] == "light")
+		$lang_theme2="selected";
+
 	echo '
 		<form method="post" enctype="multipart/form-data">
 			<div class="w3-theme-white">
@@ -64,8 +70,6 @@
 					<div class="w3-row-padding w3-margin-bottom">
 						<input class="w3-input" name="name" type="text" placeholder="Fullname" style="width: 100%" value="'. $users[$user]["name"] .'" minlength="8" maxlength="16" required>
 					</div>
-				</div>
-				<div class="w3-half">
 					<div class="w3-row-padding w3-margin-bottom">
 						<select class="w3-select" name="gender">
 							<option value="fa-venus-mars" '. $gender_select1 .'>Hetero</option>
@@ -90,6 +94,12 @@
 							<option value="de_de" '. $lang_select1 .'>'. $lang["lang"]["de_de"] .'</option>
 							<option value="en_us" '. $lang_select2 .'>'. $lang["lang"]["en_us"] .'</option>
 							<option value="zh_cn" '. $lang_select3 .'>'. $lang["lang"]["zh_cn"] .'</option>
+						</select>
+					</div>
+					<div class="w3-row-padding w3-margin-bottom">
+						<select class="w3-select" name="theme">
+							<option value="dark" '. $lang_theme1 .'>'. $lang["theme"]["dark"] .'</option>
+							<option value="light" '. $lang_theme2 .'>'. $lang["theme"]["light"] .'</option>
 						</select>
 					</div>
 				</div>

@@ -5,6 +5,9 @@ $lang["lang"]["de_de"]="德语";
 $lang["lang"]["en_us"]="英语";
 $lang["lang"]["zh_cn"]="中文";
 
+$lang["theme"]["dark"]="深色";
+$lang["theme"]["light"]="浅色";
+
 $lang["button"]["login"]="登录";
 $lang["button"]["register"]="注册";
 $lang["button"]["clear"]="清除";
@@ -40,7 +43,6 @@ $lang["message"]["large"]="文件过大。";
 $lang["message"]["only"]="仅限";
 $lang["message"]["allowed"]="允许。";
 $lang["message"]["failed"]="上传失败。";
-$lang["page"]["activity"]="活动";
 
 $lang["page"]["imprint"]="打印";
 $lang["page"]["privacy"]="隐私";
@@ -53,6 +55,7 @@ $lang["page"]["profile"]="个人资料";
 $lang["page"]["logout"]="退出";
 $lang["page"]["login"]="登录";
 $lang["page"]["register"]="注册";
+$lang["page"]["activity"]="活动";
 
 $lang["admin_rooms"]["title"]="管理房间";
 $lang["admin_rooms"]["room"]="房间";

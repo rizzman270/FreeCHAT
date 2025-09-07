@@ -5,6 +5,9 @@ $lang["lang"]["de_de"]="Deutsch";
 $lang["lang"]["en_us"]="Englisch";
 $lang["lang"]["zh_cn"]="Chinesisch";
 
+$lang["theme"]["dark"]="Dunkel";
+$lang["theme"]["light"]="Hell";
+
 $lang["button"]["login"]="Anmelden";
 $lang["button"]["register"]="Registrieren";
 $lang["button"]["clear"]="Löschen";
@@ -14,7 +17,6 @@ $lang["button"]["ban"]="Sperren";
 $lang["button"]["unban"]="Sperre aufheben";
 $lang["button"]["save"]="Speichern";
 $lang["button"]["send"]="Senden";
-$lang["page"]["activity"]="Aktivität";
 
 $lang["message"]["is_admin"]="Zugriff verweigert.";
 $lang["message"]["add"]="- Raum hinzugefügt";
@@ -53,6 +55,7 @@ $lang["page"]["profile"]="Profil";
 $lang["page"]["logout"]="Abmelden";
 $lang["page"]["login"]="Anmelden";
 $lang["page"]["register"]="Registrieren";
+$lang["page"]["activity"]="Aktivität";
 
 $lang["admin_rooms"]["title"]="Räume verwalten";
 $lang["admin_rooms"]["room"]="Raum";

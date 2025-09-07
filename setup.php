@@ -6,8 +6,8 @@ file_put_contents('./data/online.json',json_encode([]));
 file_put_contents('./data/messages.json',json_encode([]));
 file_put_contents('./data/private.json',json_encode([]));
 $defaultUsers = [
-	"Admin"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Admin","gender"=>"fa-mars","language"=>"en_us","is_admin"=>true],
-	"Guest"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Guest","gender"=>"fa-mars","language"=>"en_us","is_admin"=>false]
+	"Admin"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Admin","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","is_admin"=>true],
+	"Guest"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Guest","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","is_admin"=>false]
 ];
 file_put_contents('./data/users.json',json_encode($defaultUsers));
 $defaultRooms = [

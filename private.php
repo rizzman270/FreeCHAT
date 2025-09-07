@@ -56,7 +56,14 @@
 					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 30%;" required>
 					<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
 					<select class="w3-select-theme w3-left" id="color" style="width: 19%;">
-						<option value="#000000">Default</option>
+		';
+
+		if ($users[$user]["theme"] == "dark")
+			echo '<option value="#ffffff">Default</option>';
+		else
+			echo '<option value="#000000">Default</option>';
+
+		echo '
 						<option value="#9E0F22" style="color: #9E0F22;">Dark Red</option>
 						<option value="#E44235" style="color: #E44235;">Light Red</option>
 						<option value="#111C4E" style="color: #111C4E;">Dark Blue</option>

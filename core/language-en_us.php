@@ -5,6 +5,9 @@ $lang["lang"]["de_de"]="German";
 $lang["lang"]["en_us"]="English";
 $lang["lang"]["zh_cn"]="Chinese";
 
+$lang["theme"]["dark"]="Dark";
+$lang["theme"]["light"]="Light";
+
 $lang["button"]["login"]="Login";
 $lang["button"]["register"]="Register";
 $lang["button"]["clear"]="Clear";

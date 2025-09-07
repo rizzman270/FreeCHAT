@@ -9,7 +9,7 @@
 		$gen=$_POST["gender"];
 		$language=$_POST["language"];
 		if($user && $pass && !isset($users[$user])){
-			$users[$user]=["password"=>password_hash($pass,PASSWORD_DEFAULT),"name"=>$name,"gender"=>$gen,"language"=>$language,"is_admin"=>count($users)==0];
+			$users[$user]=["password"=>password_hash($pass,PASSWORD_DEFAULT),"name"=>$name,"gender"=>$gen,"language"=>$language,"theme"=>"light","is_admin"=>count($users)==0];
 			save_users($users);
 			$_SESSION["user"]=$user;
 			$_SESSION['lang']=$language;
@@ -29,17 +29,17 @@
 				<header class="w3-container w3-text-theme">
 					<h4><strong><i class="fas fa-signature"></i> '. $lang["register"]["title"] .'</strong> '. $message .'</h4>
 				</header>
-				<div class="w3-half">
+				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
 						<input class="w3-input" name="username" type="text" placeholder="'. $lang["register"]["username"] .'" style="width: 100%" minlength="3" maxlength="16" required>
 					</div>
 				</div>
-				<div class="w3-half">
+				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
 						<input class="w3-input" name="password" type="text" placeholder="'. $lang["register"]["password"] .'" style="width: 100%" minlength="8" maxlength="16" required>
 					</div>
 				</div>
-				<div class="w3-half">
+				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
 						<input class="w3-input" name="name" type="text" placeholder="'. $lang["register"]["name"] .'" style="width: 100%" minlength="3" maxlength="16" required>
 					</div>

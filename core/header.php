@@ -1,4 +1,5 @@
 <?php $users=load_users(); ?>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" lang="en" id="top" dir="ltr">
 	<head>
 		<title><?=TITLE?></title>
@@ -16,7 +17,14 @@
 		<meta http-equiv="pragma" content="no-cache">
 		<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 		<link rel="stylesheet" href="assets/w3.css">
-		<link rel="stylesheet" href="assets/w3-theme-owner.css">
+
+<?php
+	if ($users[$user]["theme"] == "dark")
+		echo '<link rel="stylesheet" href="assets/w3-theme-owner-dark.css">';
+	else
+		echo '<link rel="stylesheet" href="assets/w3-theme-owner.css">';
+?>
+
 		<link rel="stylesheet" href="assets/font-awesome.all.css">
 		<link rel="stylesheet" href="assets/raleway.css">
 		<link rel="stylesheet" href="assets/emoji.css">
