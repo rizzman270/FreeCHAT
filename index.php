@@ -36,27 +36,7 @@
 					<input type="file" id="imageUpload" accept="image/*" style="display:none;">
 					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="button" onclick="document.getElementById(\'imageUpload\').click()" style="width: 10%;">'. $ImageIcon .'</button>
 					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 27%;" required>
-					<div class="emoji-container">
-						<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
-						<div class="w3-border w3-border-theme-light emoji-popup" id="emoji-popup">
-							<div class="w3-theme tabs">
-		';
-
-		foreach ($emojiCategories as $category => $emojis) echo '<div class="tab">'. $category .'</div>';
-
-		echo '
-							</div>
-		';
-
-		foreach ($emojiCategories as $category => $emojis) {
-			echo '<div class="w3-theme-white emoji-grid">';
-			foreach ($emojis as $emoji) echo '<div class="emoji">'. $emoji .'</div>';
-			echo '</div>';
-		}
-
-		echo '
-						</div>
-					</div>
+					<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
 					<select class="w3-select-theme w3-left" id="color" style="width: 14%;">
 						<option value="#000000">Default</option>
 						<option value="#9E0F22" style="color: #9E0F22;">Dark Red</option>
@@ -80,6 +60,27 @@
 
 	echo '
 				</form>
+			</div>
+
+			<div class="emoji-container">
+				<div class="w3-border w3-border-theme-light emoji-popup" id="emoji-popup">
+					<div class="w3-theme tabs">
+		';
+
+		foreach ($emojiCategories as $category => $emojis) echo '<div class="tab">'. $category .'</div>';
+
+		echo '
+					</div>
+		';
+
+		foreach ($emojiCategories as $category => $emojis) {
+			echo '<div class="w3-theme-white emoji-grid">';
+			foreach ($emojis as $emoji) echo '<div class="emoji">'. $emoji .'</div>';
+			echo '</div>';
+		}
+
+		echo '
+				</div>
 			</div>
 	';
 ?>
