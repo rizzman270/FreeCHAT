@@ -20,7 +20,7 @@
 			</header>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-table-scroll w3-border w3-border-theme-light">
-					<div class="w3-table-scroll" id="chat" style="height: 85%; overflow-y: scroll; padding: 1px;"></div>
+					<div class="w3-table-scroll w3-chatfield" id="chat" style="overflow-y: scroll; padding: 1px;"></div>
 				</div>
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>

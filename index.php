@@ -20,9 +20,9 @@
 			</header>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-table-scroll w3-border w3-border-theme-light w3-threequarter">
-					<div class="w3-table-scroll" id="chatBox" style="height: 85%; overflow-y: scroll; padding: 1px;"></div>
+					<div class="w3-table-scroll w3-chatfield" id="chatBox" style="overflow-y: scroll; padding: 1px;"></div>
 				</div>
-				<div class="w3-table-scroll w3-border w3-border-theme-light w3-hide-small w3-quarter" id="onlineUsers" style="height: 85%; overflow-y: scroll; padding: 1px;"></div>
+				<div class="w3-table-scroll w3-border w3-border-theme-light w3-chatfield w3-hide-small w3-quarter" id="onlineUsers" style="overflow-y: scroll; padding: 1px;"></div>
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>
 			<div class="w3-bottom w3-theme-white">
@@ -34,10 +34,10 @@
 	if (!isset($bans[$user])) {
 		echo '
 					<input type="file" id="imageUpload" accept="image/*" style="display:none;">
-					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="button" onclick="document.getElementById(\'imageUpload\').click()" style="width: 10%;">'. $ImageIcon .'</button>
-					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 27%;" required>
-					<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
-					<select class="w3-select-theme w3-left" id="color" style="width: 14%;">
+					<button class="w3-button w3-theme-white w3-hover-theme w3-left w3-chatbox1" type="button" onclick="document.getElementById(\'imageUpload\').click()">'. $ImageIcon .'</button>
+					<input class="w3-input-theme w3-left w3-chatbox2" type="text" id="msg" placeholder="Type your message" minlength="2" required>
+					<a class="w3-button w3-theme-white w3-hover-theme w3-left w3-chatbox3" id="emoji-button">'. $emojiIcon .'</a>
+					<select class="w3-select-theme w3-left w3-chatbox4" id="color">
 						<option value="#000000">Default</option>
 						<option value="#9E0F22" style="color: #9E0F22;">Dark Red</option>
 						<option value="#E44235" style="color: #E44235;">Light Red</option>
@@ -50,11 +50,11 @@
 						<option value="#11151F" style="color: #11151F;">Dark Gray</option>
 						<option value="#A8ACBA" style="color: #A8ACBA;">Light Gray</option>
 					</select>
-					<select class="w3-select-theme w3-left" id="style" style="width: 14%;">
+					<select class="w3-select-theme w3-left w3-chatbox5" id="style">
 						<option value="normal" style="font-style: normal;">Normal</option>
 						<option value="italic" style="font-style: italic;">Italic</option>
 					</select>
-					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="submit" style="width: 10%;">&nbsp;<i class="fas fa-paper-plane"></i><span class="w3-hide-small"> '. $lang["button"]["send"] .'</span>&nbsp;</button>
+					<button class="w3-button w3-theme-white w3-hover-theme w3-left w3-chatbox6" type="submit">&nbsp;<i class="fas fa-paper-plane"></i><span class="w3-hide-small"> '. $lang["button"]["send"] .'</span>&nbsp;</button>
 		';
 	}
 
