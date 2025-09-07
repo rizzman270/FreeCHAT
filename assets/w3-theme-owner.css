@@ -40,5 +40,5 @@ html { overflow: scroll; -ms-overflow-style: none; scrollbar-width: none; }
 .w3-input-theme{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;}
 .w3-select-theme{padding:9px 0;border:none;border-bottom:1px solid #ccc}
 
-@media (max-width:500px){.w3-box{left:0px;width:100%;} .w3-chatfield {height: 80%;} .w3-chatbox1 { width: 10%; } .w3-chatbox2 { width: 30%; } .w3-chatbox3 { width: 10%; } .w3-chatbox4 { width: 19%; } .w3-chatbox5 { width: 19%; } .w3-chatbox6 { width: 12%; }}
-@media (min-width:1000px){.w3-box{left:150px;width:100%;} .w3-chatfield {height: 90%;} .w3-chatbox1 { width: 10%; } .w3-chatbox2 { width: 27%; } .w3-chatbox3 { width: 10%; } .w3-chatbox4 { width: 14%; } .w3-chatbox5 { width: 14%; } .w3-chatbox6 { width: 10%; }}
+@media (max-width:500px){.w3-box{left:0px;width:100%;} .w3-chatfield {height: 80%;} .w3-chatcontainer {width: 100%;}}
+@media (min-width:1000px){.w3-box{left:150px;width:100%;} .w3-chatfield {height: 90%;} .w3-chatcontainer {width: calc(100% - 300px);}

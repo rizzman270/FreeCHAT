@@ -24,7 +24,7 @@
 				</div>
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>
-			<div class="w3-bottom w3-theme-white">
+			<div class="w3-bottom w3-theme-white w3-chatcontainer">
 				<form onsubmit="sendPrivate(event)">
 					<audio id="msgSound" src="assets/message.wav"></audio>
 	';
@@ -33,9 +33,9 @@
 		echo '
 					<input type="file" id="imageUpload" accept="image/*" style="display:none;">
 					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="button" onclick="document.getElementById(\'imageUpload\').click()" style="width: 10%;">'. $ImageIcon .'</button>
-					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 27%;" required>
+					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 30%;" required>
 					<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
-					<select class="w3-select-theme w3-left" id="color" style="width: 14%;">
+					<select class="w3-select-theme w3-left" id="color" style="width: 19%;">
 						<option value="#000000">Default</option>
 						<option value="#9E0F22" style="color: #9E0F22;">Dark Red</option>
 						<option value="#E44235" style="color: #E44235;">Light Red</option>
@@ -48,11 +48,11 @@
 						<option value="#11151F" style="color: #11151F;">Dark Gray</option>
 						<option value="#A8ACBA" style="color: #A8ACBA;">Light Gray</option>
 					</select>
-					<select class="w3-select-theme w3-left" id="style" style="width: 14%;">
+					<select class="w3-select-theme w3-left" id="style" style="width: 19%;">
 						<option value="normal" style="font-style: normal;">Normal</option>
 						<option value="italic" style="font-style: italic;">Italic</option>
 					</select>
-					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="submit" style="width: 10%;">&nbsp;<i class="fas fa-paper-plane"></i><span class="w3-hide-small"> '. $lang["button"]["send"] .'</span>&nbsp;</button>
+					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="submit" style="width: 12%;">&nbsp;<i class="fas fa-paper-plane"></i><span class="w3-hide-small"> '. $lang["button"]["send"] .'</span>&nbsp;</button>
 		';
 	}
 
