@@ -1,5 +1,7 @@
 FreeCHAT - Chat for free and find new friends!
 
+<img src="preview.jpg">
+
 About:
 This is a Flat File php chat it does not require a database like MySQL.
 Only require a web server(apache2, nginx, lighttpd) and php.
