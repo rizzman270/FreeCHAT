@@ -22,7 +22,7 @@
 				<div class="w3-table-scroll w3-border w3-border-theme-light w3-threequarter">
 					<div class="w3-table-scroll w3-chatfield" id="chatBox" style="overflow-y: scroll; padding: 1px;"></div>
 				</div>
-				<a class="w3-table-scroll w3-border w3-border-theme-light w3-hide-small w3-quarter w3-chatfield" id="onlineUsers" style="overflow-y: scroll; padding: 1px;"></a>
+				<div class="w3-table-scroll w3-border w3-border-theme-light w3-hide-small w3-quarter w3-chatfield" id="onlineUsers" style="overflow-y: scroll; padding: 1px;"></div>
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>
 			<div class="w3-bottom w3-theme-white w3-chatcontainer">
