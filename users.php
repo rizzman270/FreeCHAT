@@ -47,7 +47,7 @@
 					} else {
 						table_theme = "w3-theme-light";
 					}
-					tr.innerHTML = '<td class="w3-border '+ table_theme +' w3-border-theme-light w3-hover-text-theme" style="vertical-align: middle;"><a class="w3-link" href="private.php?user='+ user +'"><b>'+ members[user].name +'</b></td>';
+					tr.innerHTML = '<td class="w3-border '+ table_theme +' w3-border-theme-light w3-hover-text-theme" style="vertical-align: middle;"><a class="w3-link" href="private.php?user='+ user +'"><b><i class="fas '+ members[user].gender +'"></i> '+ members[user].name +'</b></td>';
 					membersList.appendChild(tr);
 				});
 			}
