@@ -19,6 +19,7 @@ function load_bans(){ return load_json("bans.json"); }
 function save_bans($data){ save_json("bans.json",$data); }
 function load_online(){ return load_json("online.json"); }
 function save_online($data){ save_json("online.json",$data); }
+function load_emoji(){ return load_json("../assets/emoji.json"); }
 
 if (!isset($_SESSION['lang'])) $_SESSION['lang']="en_us";
 include "language-". $_SESSION['lang'] .".php";

@@ -25,26 +25,6 @@
 				<div class="w3-hide-small w3-tiny" id="typingIndicator" style="float: left; font-style: italic; color: #aaa; width: 100%;"></div>
 			</div>
 			<div class="w3-bottom w3-theme-white w3-chatcontainer">
-				<div class="emoji-container">
-					<div class="w3-border w3-border-theme-light emoji-popup" id="emoji-popup">
-						<div class="w3-theme tabs">
-		';
-
-		foreach ($emojiCategories as $category => $emojis) echo '<div class="tab">'. $category .'</div>';
-
-		echo '
-					</div>
-		';
-
-		foreach ($emojiCategories as $category => $emojis) {
-			echo '<div class="w3-theme-white emoji-grid">';
-			foreach ($emojis as $emoji) echo '<div class="emoji">'. $emoji .'</div>';
-			echo '</div>';
-		}
-
-		echo '
-					</div>
-				</div>
 				<form onsubmit="sendPrivate(event)">
 					<audio id="msgSound" src="assets/message.wav"></audio>
 	';
@@ -54,7 +34,8 @@
 					<input type="file" id="imageUpload" accept="image/*" style="display:none;">
 					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="button" onclick="document.getElementById(\'imageUpload\').click()" style="width: 10%;">'. $ImageIcon .'</button>
 					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 30%;" required>
-					<a class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</a>
+					<div class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</div>
+					<div id="emoji-picker" class="w3-border w3-border-theme-light w3-theme-white w3-center w3-table-scroll w3-hide" style="position: absolute; bottom: 40px; right: 10px; width: 300px; max-height: 200px; overflow-y: auto;"></div>
 					<select class="w3-select-theme w3-left" id="color" style="width: 19%;">
 		';
 
@@ -152,6 +133,40 @@
 						}
 					});
 				}
+
+				async function loademoji() {
+					const res = await fetch("assets/emoji.json");
+					const data = await res.json();
+					const picker = document.getElementById("emoji-picker");
+					picker.innerHTML = "";
+
+					for (const category in data) {
+						const title = document.createElement("div");
+						title.textContent = category;
+						title.style.width = "100%";
+						title.style.fontWeight = "bold";
+						title.className = "w3-border w3-border-theme-light w3-theme";
+						picker.appendChild(title);
+
+						for (const [name, path] of Object.entries(data[category])) {
+							const img = document.createElement("img");
+							img.src = path;
+							img.alt = name;
+							img.style.padding = "2px";
+							img.addEventListener("click", () => {
+								const input = document.getElementById("msg");
+								input.value += `:[${name}]:`;
+							});
+							picker.appendChild(img);
+						}
+					}
+				}
+
+				document.getElementById("emoji-button").addEventListener("click", () => {
+					const picker = document.getElementById("emoji-picker");
+					picker.classList.toggle("w3-hide");
+					if (!picker.classList.contains("w3-hide")) loademoji();
+				});
 
 				imageInput.addEventListener("change", () => {
 					if(imageInput.files.length > 0){

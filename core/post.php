@@ -72,6 +72,7 @@ if ($use_command != 1) {
 	$text = filter_badword ($text);
 	$text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 	$text = parse_bbcode($text);
+	$text = parse_emoji($text);
 	if(!isset($messages[$room])) $messages[$room]=[];
 	$messages[$room][]=["icon"=>$users[$user]["gender"],"user"=>$user,"name"=>$users[$user]["name"],"text"=>$text,"color"=>$color,"style"=>$style,"time"=>date("H:i:s")];
 	save_messages($messages);

@@ -1,18 +1,15 @@
 <?php
-$emojiIcon = "😀";
 $ImageIcon = "📷";
+$emojiIcon = "😀";
 
-$emojiCategories = [
-	"😀" => ["😀","😁","😂","🤣","😅","😊","😍","😘","😎","🤩"],
-	"👨" => ["👋","👍","🙏","👏","🙌","🤝","👨‍💻","👩‍🍳","🧑‍🎨","🧑‍🚀"],
-	"🐶" => ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯"],
-	"🍕" => ["🍎","🍊","🍌","🍉","🍇","🍓","🍒","🍑","🥝","🍍"],
-	"⚽" => ["⚽","🏀","🏈","⚾","🎾","🏐","🎱","🏓","🥊","🎮"],
-	"🌍" => ["🚗","🚕","🚙","🚌","🚎","🏎","🚓","🚑","🚒","🚲"],
-	"💡" => ["💡","📱","💻","🖥","⌨️","🖱","💿","📀","📷","🎥"],
-	"❤️" => ["❤️","💛","💚","💙","💜","🖤","🤍","💔","❣️","💕"],
-	"🏳️" => ["🏳️","🏴","🏁","🚩","🏳️‍🌈","🇺🇸","🇬🇧","🇫🇷","🇩🇪","🇯🇵"],
-];
+function parse_emoji($text) {
+	$emoji = load_emoji();
+	foreach ($emoji as $category)
+		foreach ($category as $name => $path)
+			$text = str_replace(":[$name]:", "<img src='$path' class='w3-image'>", $text);
+
+	return $text;
+}
 
 function filter_badword($text) {
 	$badwords = ["shit", "bullshit", "piss", "pissed", "ass", "asshole", "bastard", "bitch", "sonofabitch", "dick", "dickhead", "cock", "cocksucker", "prick", "pussy", "slut", "whore", "cum", "cumshot", "blowjob", "handjob", "tit", "tits", "boobs", "boobies", "vagina", "penis", "balls", "nuts", "wanker", "jerkoff", "motherfucker", "goddamn", "damn", "crap", "twat", "cunt", "arse", "arsehole", "retard", "idiot", "moron", "loser", "kill", "die", "murder", "rape", "rapist", "nazi"];

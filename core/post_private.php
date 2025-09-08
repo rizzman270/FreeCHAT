@@ -13,6 +13,7 @@ $privates = file_exists("../data/private.json") ? json_decode(file_get_contents(
 if(!isset($privates[$key])) $privates[$key] = [];
 $msg = htmlspecialchars($msg, ENT_QUOTES, 'UTF-8');
 $msg = parse_bbcode($msg);
+$msg = parse_emoji($msg);
 $privates[$key][] = [
     "from"=>$me,
     "to"=>$other,
