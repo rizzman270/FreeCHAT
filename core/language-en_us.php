@@ -84,7 +84,13 @@ $lang["rooms"]["room"]="Room";
 $lang["rooms"]["description"]="Description";
 
 $lang["chat"]["typing"]="is typing...";
+$lang["chat"]["input"]="Type your message";
 
 $lang["private"]["title"]="Private Chat";
 $lang["private"]["typing"]="is typing...";
+$lang["private"]["input"]="Type your message";
+
+$lang["users"]["title"]="Users";
+$lang["users"]["user"]="User";
+$lang["users"]["search"]="Search user...";
 ?>

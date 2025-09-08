@@ -27,7 +27,6 @@
 
 		<link rel="stylesheet" href="assets/font-awesome.all.css">
 		<link rel="stylesheet" href="assets/raleway.css">
-		<link rel="stylesheet" href="assets/emoji.css">
 		<script type="text/javascript">
 			function sidebar_handle() {
 				var sidebar = document.getElementById("sidebar");
@@ -64,6 +63,7 @@
 			</div>
 			<div class="w3-bar-block">
 				<a href="rooms.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-house"></i> '. $lang["page"]["rooms"] .'</a>
+				<a href="users.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-users"></i> '. $lang["page"]["users"] .'</a>
 				<a href="profile.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-user"></i> '. $lang["page"]["profile"] .'</a>
 				<a href="logout.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-sign-out"></i> '. $lang["page"]["logout"] .'</a>
 			</div>
@@ -93,20 +93,29 @@
 			if (strrpos ($_SERVER["REQUEST_URI"], "index.php") != false) {
 				echo '
 					<a href="rooms.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-house"></i> '. $lang["page"]["rooms"] .'</a>
+					<a href="users.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-users"></i> '. $lang["page"]["users"] .'</a>
 					<a href="profile.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-user"></i> '. $lang["page"]["profile"] .'</a>
 				';
 			} else if (strrpos ($_SERVER["REQUEST_URI"], "private.php") != false) {
 				echo '
 					<a href="rooms.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-house"></i> '. $lang["page"]["rooms"] .'</a>
+					<a href="users.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-users"></i> '. $lang["page"]["users"] .'</a>
 					<a href="profile.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-user"></i> '. $lang["page"]["profile"] .'</a>
 				';
 			} else if (strrpos ($_SERVER["REQUEST_URI"], "rooms.php") != false) {
 				echo '
+					<a href="users.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-users"></i> '. $lang["page"]["users"] .'</a>
 					<a href="profile.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-user"></i> '. $lang["page"]["profile"] .'</a>
 				';
 			} else if (strrpos ($_SERVER["REQUEST_URI"], "profile.php") != false) {
 				echo '
 					<a href="rooms.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-house"></i> '. $lang["page"]["rooms"] .'</a>
+					<a href="users.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-users"></i> '. $lang["page"]["users"] .'</a>
+				';
+			} else if (strrpos ($_SERVER["REQUEST_URI"], "users.php") != false) {
+				echo '
+					<a href="rooms.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-house"></i> '. $lang["page"]["rooms"] .'</a>
+					<a href="profile.php" class="w3-bar-item w3-button w3-padding w3-hover-white w3-hover-text-theme"><i class="fas fa-user"></i> '. $lang["page"]["profile"] .'</a>
 				';
 			}
 

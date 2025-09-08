@@ -33,7 +33,7 @@
 		echo '
 					<input type="file" id="imageUpload" accept="image/*" style="display:none;">
 					<button class="w3-button w3-theme-white w3-hover-theme w3-left" type="button" onclick="document.getElementById(\'imageUpload\').click()" style="width: 10%;">'. $ImageIcon .'</button>
-					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="Type your message" minlength="2" style="width: 30%;" required>
+					<input class="w3-input-theme w3-left" type="text" id="msg" placeholder="'. $lang["private"]["input"] .'" minlength="2" style="width: 30%;" required>
 					<div class="w3-button w3-theme-white w3-hover-theme w3-left" id="emoji-button" style="width: 10%;">'. $emojiIcon .'</div>
 					<div id="emoji-picker" class="w3-border w3-border-theme-light w3-theme-white w3-center w3-table-scroll w3-hide" style="position: absolute; bottom: 40px; right: 10px; width: 300px; max-height: 200px; overflow-y: auto;"></div>
 					<select class="w3-select-theme w3-left" id="color" style="width: 19%;">

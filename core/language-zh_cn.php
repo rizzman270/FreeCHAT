@@ -84,7 +84,13 @@ $lang["rooms"]["room"]="房间";
 $lang["rooms"]["description"]="描述";
 
 $lang["chat"]["typing"]="正在输入...";
+$lang["chat"]["input"]="输入您的消息";
 
 $lang["private"]["title"]="私聊";
 $lang["private"]["typing"]="正在输入...";
+$lang["private"]["input"]="输入您的消息";
+
+$lang["users"]["title"]="用户";
+$lang["users"]["user"]="用户";
+$lang["users"]["search"]="搜索用户...";
 ?>
