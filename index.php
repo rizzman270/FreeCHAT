@@ -19,6 +19,7 @@
 				<h4><strong><i class="fas fa-house"></i> '. htmlspecialchars($room) .'</strong> <span class="w3-hide-small">- '. htmlspecialchars($rooms[$room]['description']) .'</span> '. $message .'</h4>
 			</header>
 			<div class="w3-row-padding w3-margin-bottom">
+				<div class="w3-hide-small" id="privatechat"></div>
 				<div class="w3-table-scroll w3-border w3-border-theme-light w3-threequarter">
 					<div class="w3-table-scroll w3-chatfield" id="chatBox" style="overflow-y: scroll; padding: 1px;"></div>
 				</div>
@@ -123,7 +124,7 @@
 					fetch("core/online.php?room=<?=urlencode($room)?>").then(r=>r.json()).then(data=>{
 						let list = "";
 						data.forEach(u=>{
-							list += "<div style='padding: 2px;'><a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
+							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\")'><i class='fas fa-message'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
 						});
 						document.getElementById("onlineUsers").innerHTML=list;
 					});
@@ -200,6 +201,102 @@
 						});
 					}
 				});
+
+				function openPrivateChat(username) {
+					if (document.getElementById("chat-" + username)) return;
+
+					const container = document.getElementById("privatechat");
+					const chatBox = document.createElement("div");
+					chatBox.className = "w3-private-chat w3-theme w3-border w3-border-theme";
+					chatBox.id = "chat-" + username;
+
+					chatBox.innerHTML = `
+						<div class="w3-private-header w3-border-theme w3-theme w3-padding">
+							<b>${username}</b> <span href="#" class="w3-hover-text-black w3-right" onclick="closePrivateChat('${username}')"><b>X</b></span>
+						</div>
+						<div class="w3-private-messages w3-theme-white" id="msgs-${username}"></div>
+						<div class="w3-private-input">
+							<input class="w3-input-theme w3-left" type="text" id="input-${username}" placeholder="<?php echo $lang["chat"]["input"]; ?>" minlength="2" style="width: 84%;" required>
+							<button class="w3-button w3-theme-white w3-hover-theme w3-left" onclick="sendPrivateMessage('${username}')" style="width: 16%;"><i class="fas fa-paper-plane"></i></button>
+						</div>
+					`;
+
+					container.appendChild(chatBox);
+					loadPrivateMessages(username);
+					makeDraggable(chatBox);
+				}
+
+				function closePrivateChat(username) {
+					const chat = document.getElementById("chat-" + username);
+					if (chat) chat.remove();
+				}
+
+				function fetchPrivate(){
+					fetch("core/fetch_private.php?other=<?=urlencode($other)?>").then(r=>r.json()).then(data=>{
+						let chat = document.getElementById("chat");
+						chat.innerHTML = "";
+						data.forEach(m=>{
+							let div = document.createElement("div");
+							div.className = m.from === "<?=$user?>" ? "msg me" : "msg";
+							div.innerHTML=`<div style="padding: 2px;"><strong>${m.from}</strong>: <span class="w3-right w3-tiny">${m.time}</span><span style="font-style: ${m.style}; color: ${m.color};">${m.text}</span></div>`;
+							chat.appendChild(div);
+						});
+
+						if (data.length > lastCount) {
+							let last = data[data.length - 1];
+							if (last.from !== "<?=$user?>")
+								document.getElementById("msgSound").play();
+						}
+						lastCount = data.length;
+
+						chat.scrollTop = chat.scrollHeight;
+					});
+				}
+
+				async function loadPrivateMessages(username) {
+					const res = await fetch("core/fetch_private.php?other=" + encodeURIComponent(username));
+					const data = await res.json();
+					const msgBox = document.getElementById("msgs-" + username);
+					msgBox.innerHTML = "";
+					data.forEach(m => {
+						const div = document.createElement("div");
+						div.innerHTML ="<div style='padding: 2px;'><strong>"+ m.from +"</strong>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
+						msgBox.appendChild(div);
+					});
+					msgBox.scrollTop = msgBox.scrollHeight;
+				}
+
+				async function sendPrivateMessage(username) {
+					const input = document.getElementById("input-" + username);
+					const text = input.value.trim();
+					if (!text) return;
+					await fetch("core/post_private.php", {
+						method: "POST",
+						headers: {"Content-Type": "application/x-www-form-urlencoded"},
+						body: "other=" + encodeURIComponent(username) + "&msg=" + encodeURIComponent(text)
+					});
+					input.value = "";
+					loadPrivateMessages(username);
+				}
+
+				function makeDraggable(el) {
+					const header = el.querySelector(".w3-private-header");
+					let offsetX = 0, offsetY = 0, isDown = false;
+
+					header.addEventListener("mousedown", (e) => {
+						isDown = true;
+						offsetX = el.offsetLeft - e.clientX;
+						offsetY = el.offsetTop - e.clientY;
+					});
+
+					document.addEventListener("mouseup", () => isDown = false);
+					document.addEventListener("mousemove", (e) => {
+						if (!isDown) return;
+						el.style.left = (e.clientX + offsetX) + "px";
+						el.style.top = (e.clientY + offsetY) + "px";
+						el.style.right = "auto";
+					});
+				}
 
 				setInterval(fetchTyping, 500);
 				setInterval(loadOnlineUsers,1000);

@@ -53,5 +53,15 @@
 		"Yes": "assets/emoji/yes.gif",
 		"Zipped": "assets/emoji/zipped.gif",
 		"Zzz": "assets/emoji/zzz.gif"
+	},
+	"Touko Madobe": {
+		"wtm1": "assets/windows/1.png",
+		"wtm2": "assets/windows/2.png",
+		"wtm3": "assets/windows/3.png",
+		"wtm4": "assets/windows/4.png",
+		"wtm5": "assets/windows/5.png",
+		"wtm6": "assets/windows/6.png",
+		"wtm7": "assets/windows/7.png",
+		"wtm8": "assets/windows/8.png"
 	}
 }
