@@ -30,6 +30,7 @@
 				<form id="chatForm">
 					<audio id="joinSound" src="assets/online.wav"></audio>
 					<audio id="leaveSound" src="assets/offline.wav"></audio>
+					<audio id="msgSound" src="assets/message.wav"></audio>
 	';
 
 	if (!isset($bans[$user])) {
@@ -79,6 +80,7 @@
 				const form=document.getElementById("chatForm");
 
 				let lastCount = 0;
+				let lastPrivatCount = 0;
 				let typingTimeout;
 
 				form.addEventListener("submit",e=>{
@@ -124,7 +126,7 @@
 					fetch("core/online.php?room=<?=urlencode($room)?>").then(r=>r.json()).then(data=>{
 						let list = "";
 						data.forEach(u=>{
-							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-message'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
+							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-comments'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
 						});
 						document.getElementById("onlineUsers").innerHTML=list;
 					});
@@ -212,7 +214,7 @@
 
 					chatBox.innerHTML = `
 						<header class="w3-private-header w3-container w3-border w3-border-theme w3-text-theme">
-							<h4><strong><i class="fas fa-user"></i> ${name}</strong> <span href="#" class="w3-text-black w3-hover-white w3-hover-text-theme w3-right" onclick="closePrivateChat('${username}')" style="cursor: pointer"><b>X</b></span></h4>
+							<h4><strong><i class="fas fa-comments"></i> ${name}</strong> <span href="#" class="w3-text-black w3-hover-white w3-hover-text-theme w3-right" onclick="closePrivateChat('${username}')" style="cursor: pointer"><b>X</b></span></h4>
 						</header>
 						<div class="w3-private-messages w3-border w3-border-theme w3-theme-white" id="msgs-${username}"></div>
 						<div class="w3-private-input w3-border w3-border-theme">
@@ -222,8 +224,10 @@
 					`;
 
 					container.appendChild(chatBox);
-					loadPrivateMessages(username);
+					// loadPrivateMessages(username);
 					makeDraggable(chatBox);
+
+					setInterval(loadPrivateMessages, 500, username);
 				}
 
 				function closePrivateChat(username) {
@@ -231,52 +235,37 @@
 					if (chat) chat.remove();
 				}
 
-				function fetchPrivate(){
-					fetch("core/fetch_private.php?other=<?=urlencode($other)?>").then(r=>r.json()).then(data=>{
-						let chat = document.getElementById("chat");
-						chat.innerHTML = "";
-						data.forEach(m=>{
-							let div = document.createElement("div");
-							div.className = m.from === "<?=$user?>" ? "msg me" : "msg";
-							div.innerHTML=`<div style="padding: 2px;"><strong>${m.from}</strong>: <span class="w3-right w3-tiny">${m.time}</span><span style="font-style: ${m.style}; color: ${m.color};">${m.text}</span></div>`;
-							chat.appendChild(div);
+				function loadPrivateMessages(username) {
+					fetch("core/fetch_private.php?other=" + encodeURIComponent(username)).then(r=>r.json()).then(data=>{
+						const msgBox = document.getElementById("msgs-" + username);
+						msgBox.innerHTML = "";
+						data.forEach(m => {
+							const div = document.createElement("div");
+							div.innerHTML ="<div style='padding: 2px;'><strong>"+ m.from +"</strong>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
+							msgBox.appendChild(div);
 						});
 
-						if (data.length > lastCount) {
+						if (data.length > lastPrivatCount) {
 							let last = data[data.length - 1];
-							if (last.from !== "<?=$user?>")
+							if (last.from == username)
 								document.getElementById("msgSound").play();
 						}
-						lastCount = data.length;
+						lastPrivatCount = data.length;
 
-						chat.scrollTop = chat.scrollHeight;
+						msgBox.scrollTop = msgBox.scrollHeight;
 					});
 				}
 
-				async function loadPrivateMessages(username) {
-					const res = await fetch("core/fetch_private.php?other=" + encodeURIComponent(username));
-					const data = await res.json();
-					const msgBox = document.getElementById("msgs-" + username);
-					msgBox.innerHTML = "";
-					data.forEach(m => {
-						const div = document.createElement("div");
-						div.innerHTML ="<div style='padding: 2px;'><strong>"+ m.from +"</strong>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
-						msgBox.appendChild(div);
-					});
-					msgBox.scrollTop = msgBox.scrollHeight;
-				}
-
-				async function sendPrivateMessage(username) {
+				function sendPrivateMessage(username) {
 					const input = document.getElementById("input-" + username);
 					const text = input.value.trim();
 					if (!text) return;
-					await fetch("core/post_private.php", {
+					fetch("core/post_private.php", {
 						method: "POST",
 						headers: {"Content-Type": "application/x-www-form-urlencoded"},
 						body: "other=" + encodeURIComponent(username) + "&msg=" + encodeURIComponent(text)
 					});
 					input.value = "";
-					loadPrivateMessages(username);
 				}
 
 				function makeDraggable(el) {
