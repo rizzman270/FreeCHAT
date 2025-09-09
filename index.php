@@ -97,7 +97,10 @@
 						chatBox.innerHTML="";
 						data.forEach(m=>{
 							let div=document.createElement("div");
-							div.innerHTML="<div style='padding: 2px;'><a class='w3-hover-text-theme' href='private.php?user="+ m.user +"' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></a>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
+							if (m.user == "<?=$user?>" || m.name == "Alice")
+								div.innerHTML="<div style='padding: 2px;'><span class='w3-hover-text-theme' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></span>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
+							else
+								div.innerHTML="<div style='padding: 2px;'><a class='w3-hover-text-theme' href='private.php?user="+ m.user +"' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></a>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
 							chatBox.appendChild(div);
 						});
 
@@ -126,7 +129,10 @@
 					fetch("core/online.php?room=<?=urlencode($room)?>").then(r=>r.json()).then(data=>{
 						let list = "";
 						data.forEach(u=>{
-							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-comments'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
+							if (u.user == "<?=$user?>")
+								list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme'><i class='fas fa-comments'></i></span> <span class='w3-hover-text-theme'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></span></div>";
+							else
+								list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-comments'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
 						});
 						document.getElementById("onlineUsers").innerHTML=list;
 					});
@@ -224,7 +230,6 @@
 					`;
 
 					container.appendChild(chatBox);
-					// loadPrivateMessages(username);
 					makeDraggable(chatBox);
 
 					setInterval(loadPrivateMessages, 500, username);
