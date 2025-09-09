@@ -124,7 +124,7 @@
 					fetch("core/online.php?room=<?=urlencode($room)?>").then(r=>r.json()).then(data=>{
 						let list = "";
 						data.forEach(u=>{
-							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\")'><i class='fas fa-message'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
+							list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-message'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
 						});
 						document.getElementById("onlineUsers").innerHTML=list;
 					});
@@ -202,20 +202,20 @@
 					}
 				});
 
-				function openPrivateChat(username) {
+				function openPrivateChat(username, name) {
 					if (document.getElementById("chat-" + username)) return;
 
 					const container = document.getElementById("privatechat");
 					const chatBox = document.createElement("div");
-					chatBox.className = "w3-private-chat w3-theme w3-border w3-border-theme";
+					chatBox.className = "w3-private-chat w3-theme-white";
 					chatBox.id = "chat-" + username;
 
 					chatBox.innerHTML = `
-						<div class="w3-private-header w3-border-theme w3-theme w3-padding">
-							<b>${username}</b> <span href="#" class="w3-hover-text-black w3-right" onclick="closePrivateChat('${username}')"><b>X</b></span>
-						</div>
-						<div class="w3-private-messages w3-theme-white" id="msgs-${username}"></div>
-						<div class="w3-private-input">
+						<header class="w3-private-header w3-container w3-border w3-border-theme w3-text-theme">
+							<h4><strong><i class="fas fa-user"></i> ${name}</strong> <span href="#" class="w3-text-black w3-hover-white w3-hover-text-theme w3-right" onclick="closePrivateChat('${username}')" style="cursor: pointer"><b>X</b></span></h4>
+						</header>
+						<div class="w3-private-messages w3-border w3-border-theme w3-theme-white" id="msgs-${username}"></div>
+						<div class="w3-private-input w3-border w3-border-theme">
 							<input class="w3-input-theme w3-left" type="text" id="input-${username}" placeholder="<?php echo $lang["chat"]["input"]; ?>" minlength="2" style="width: 84%;" required>
 							<button class="w3-button w3-theme-white w3-hover-theme w3-left" onclick="sendPrivateMessage('${username}')" style="width: 16%;"><i class="fas fa-paper-plane"></i></button>
 						</div>
