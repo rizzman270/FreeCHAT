@@ -210,6 +210,26 @@
 					}
 				});
 
+				function closePrivateChat(username) {
+					const chat = document.getElementById("chat-" + username);
+					if (chat) chat.remove();
+				}
+
+				function sendPrivateTyping(username){
+					fetch("core/post_private_typing.php", {
+						method:"POST",
+						body:"to="+ encodeURIComponent(username),
+						headers:{"Content-Type":"application/x-www-form-urlencoded"}
+					});
+				}
+
+				function fetchPrivateTyping(username) {
+					fetch("core/fetch_private_typing.php?user="+ encodeURIComponent(username)).then(r=>r.json()).then(typingData=>{
+						const typingBox = document.getElementById("typing-" + username);
+						typingBox.style.display = typingData.typing ? "block" : "none";
+					});
+				}
+
 				function openPrivateChat(username, name) {
 					if (document.getElementById("chat-" + username)) return;
 
@@ -223,8 +243,9 @@
 							<h4><strong><i class="fas fa-comments"></i> ${name}</strong> <span href="#" class="w3-text-black w3-hover-white w3-hover-text-theme w3-right" onclick="closePrivateChat('${username}')" style="cursor: pointer"><b>X</b></span></h4>
 						</header>
 						<div class="w3-private-messages w3-border w3-border-theme w3-theme-white" id="msgs-${username}"></div>
+						<div class="w3-tiny w3-border w3-border-theme w3-theme-white" id="typing-${username}" style="display:none; float: left; font-style: italic; color: #aaa; width: 100%;">${name} <?php echo $lang["chat"]["typing"]; ?></div>
 						<div class="w3-private-input w3-border w3-border-theme">
-							<input class="w3-input-theme w3-left" type="text" id="input-${username}" placeholder="<?php echo $lang["chat"]["input"]; ?>" minlength="2" style="width: 84%;" required>
+							<input class="w3-input-theme w3-left" type="text" id="input-${username}" oninput="sendPrivateTyping('${username}')" placeholder="<?php echo $lang["chat"]["input"]; ?>" minlength="2" style="width: 84%;" required>
 							<button class="w3-button w3-theme-white w3-hover-theme w3-left" onclick="sendPrivateMessage('${username}')" style="width: 16%;"><i class="fas fa-paper-plane"></i></button>
 						</div>
 					`;
@@ -233,15 +254,11 @@
 					makeDraggable(chatBox);
 
 					setInterval(loadPrivateMessages, 500, username);
-				}
-
-				function closePrivateChat(username) {
-					const chat = document.getElementById("chat-" + username);
-					if (chat) chat.remove();
+					setInterval(fetchPrivateTyping, 500, username);
 				}
 
 				function loadPrivateMessages(username) {
-					fetch("core/fetch_private.php?other=" + encodeURIComponent(username)).then(r=>r.json()).then(data=>{
+					fetch("core/fetch_private.php?other="+ encodeURIComponent(username)).then(r=>r.json()).then(data=>{
 						const msgBox = document.getElementById("msgs-" + username);
 						msgBox.innerHTML = "";
 						data.forEach(m => {
