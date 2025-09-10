@@ -14,6 +14,8 @@ function parse_emoji($text) {
 	return $text;
 }
 
+function load_emoji(){ return load_json("../assets/emoji.json"); }
+
 function load_users(){ return load_json("users.json"); }
 function save_users($data){ save_json("users.json",$data); }
 function load_rooms(){ return load_json("rooms.json"); }
@@ -24,9 +26,12 @@ function load_bans(){ return load_json("bans.json"); }
 function save_bans($data){ save_json("bans.json",$data); }
 function load_online(){ return load_json("online.json"); }
 function save_online($data){ save_json("online.json",$data); }
-function load_emoji(){ return load_json("../assets/emoji.json"); }
 function load_invite(){ return load_json("invites.json"); }
 function save_invite($data){ save_json("invites.json",$data); }
+function load_accepted(){ return load_json("accepted_invites.json"); }
+function save_accepted($data){ save_json("accepted_invites.json",$data); }
+function load_declined(){ return load_json("declined_invites.json"); }
+function save_declined($data){ save_json("declined_invites.json",$data); }
 function load_typing_private(){ return load_json("typing_private.json"); }
 function save_typing_private($data){ save_json("typing_private.json",$data); }
 function load_typing(){ return load_json("typing.json"); }

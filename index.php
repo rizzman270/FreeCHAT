@@ -74,6 +74,19 @@
 	';
 ?>
 
+			<div class="w3-hide-small" id="inviteModal" style="background: rgba(0,0,0,0.6); display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; justify-content: center; align-items: center; z-index: 2000;">
+				<div class="w3-border w3-border-theme-light w3-theme-white">
+					<header class="w3-container w3-theme">
+						<h4><?=$lang["invite"]["title"]?></h4>
+					</header>
+					<p class="w3-center" id="inviteText"></p>
+					<div class="modal-actions">
+						<button class="w3-button w3-theme-white w3-hover-theme w3-half" id="acceptInvite"><?=$lang["button"]["accept"]?></button>
+						<button class="w3-button w3-theme-white w3-hover-theme w3-half" id="declineInvite"><?=$lang["button"]["decline"]?></button>
+					</div>
+				</div>
+			</div>
+
 			<script type="text/javascript">
 				const imageInput = document.getElementById("imageUpload");
 				const chatBox=document.getElementById("chatBox");
@@ -230,6 +243,20 @@
 					});
 				}
 
+				async function checkInviteStatus(username) {
+					/* const res = await fetch("core/check_invite_status.php?user=" + encodeURIComponent(username));
+					const data = await res.json();
+
+					if (data.status === "accepted") {
+						// alert(username + " accepted your private chat request.");
+					} else if (data.status === "declined") {
+						// alert(username + " declined your private chat request.");
+						closePrivateChat(username);
+					} else {
+						setTimeout(() => checkInviteStatus(username), 5000);
+					} */
+				}
+
 				function openPrivateChat(username, name) {
 					if (document.getElementById("chat-" + username)) return;
 
@@ -257,7 +284,7 @@
 						method: "POST",
 						headers: { "Content-Type": "application/x-www-form-urlencoded" },
 						body: "to="+ encodeURIComponent(username) +"&name="+ encodeURIComponent(name)
-					});
+					}).then(() => checkInviteStatus(username));
 
 					setInterval(loadPrivateMessages, 500, username);
 					setInterval(fetchPrivateTyping, 500, username);
@@ -315,14 +342,45 @@
 					});
 				}
 
-				setInterval(async () => {
-					const res = await fetch("core/check_invites.php");
-					const invites = await res.json();
+				function check_invites(){
+					fetch("core/check_invites.php").then(r=>r.json()).then(data=>{
 
-					invites.forEach(invite => {
-						openPrivateChat(invite.from, invite.name);
+						if (data.length > lastPrivatCount) {
+							const invite = data[0];
+							currentInviteFrom = invite.from;
+							currentInviteName = invite.name;
+
+							document.getElementById("inviteText").innerHTML = "<b>"+ invite.name +"</b></br><?=$lang["invite"]["text"]?>";
+							document.getElementById("inviteModal").style.display = "flex";
+						}
+						lastPrivatCount = data.length - 1;
 					});
-				}, 5000);
+				}
+
+				setInterval(check_invites, 5000);
+
+				document.getElementById("acceptInvite").addEventListener("click", () => {
+					if (!currentInviteFrom) return;
+					document.getElementById("inviteModal").style.display = "none";
+					openPrivateChat(currentInviteFrom, currentInviteName);
+					fetch("core/accept_invite.php", {
+						method: "POST",
+						headers: { "Content-Type": "application/x-www-form-urlencoded" },
+						body: "from=" + encodeURIComponent(currentInviteFrom)
+					});
+					currentInviteFrom = null;
+				});
+
+				document.getElementById("declineInvite").addEventListener("click", () => {
+					if (!currentInviteFrom) return;
+					document.getElementById("inviteModal").style.display = "none";
+					fetch("core/decline_invite.php", {
+						method: "POST",
+						headers: { "Content-Type": "application/x-www-form-urlencoded" },
+						body: "from=" + encodeURIComponent(currentInviteFrom)
+					});
+					currentInviteFrom = null;
+				});
 
 				setInterval(fetchTyping, 500);
 				setInterval(loadOnlineUsers,1000);

@@ -17,6 +17,8 @@ $lang["button"]["ban"]="Sperren";
 $lang["button"]["unban"]="Sperre aufheben";
 $lang["button"]["save"]="Speichern";
 $lang["button"]["send"]="Senden";
+$lang["button"]["accept"]="Akzeptieren";
+$lang["button"]["decline"]="Ablehnen";
 
 $lang["message"]["is_admin"]="Zugriff verweigert.";
 $lang["message"]["add"]="- Raum hinzugefügt";
@@ -93,4 +95,7 @@ $lang["private"]["input"]="Geben Sie Ihre Nachricht ein";
 $lang["users"]["title"]="Benutzer";
 $lang["users"]["user"]="Benutzer";
 $lang["users"]["search"]="Benutzer suchen...";
+
+$lang["invite"]["title"]="Private Chat-Anfrage";
+$lang["invite"]["text"]="Möchte einen privaten Chat starten.";
 ?>

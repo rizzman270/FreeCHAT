@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "config.php";
 if (!isset($_SESSION["user"])) exit;
 $to=$_POST["to"]??"";
 $name=$_POST["name"]??"";

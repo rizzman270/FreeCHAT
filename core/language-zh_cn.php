@@ -17,6 +17,8 @@ $lang["button"]["ban"]="禁止";
 $lang["button"]["unban"]="解除禁止";
 $lang["button"]["save"]="保存";
 $lang["button"]["send"]="发送";
+$lang["button"]["accept"]="接受";
+$lang["button"]["decline"]="拒绝";
 
 $lang["message"]["is_admin"]="访问被拒绝。";
 $lang["message"]["add"]="- 房间已添加";
@@ -93,4 +95,7 @@ $lang["private"]["input"]="输入您的消息";
 $lang["users"]["title"]="用户";
 $lang["users"]["user"]="用户";
 $lang["users"]["search"]="搜索用户...";
+
+$lang["invite"]["title"]="私聊请求";
+$lang["invite"]["text"]="想要开始私聊。";
 ?>

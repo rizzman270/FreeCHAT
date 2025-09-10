@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "config.php";
 if (!isset($_SESSION["user"])) exit;
 $invites = load_invite();
 $user = $_SESSION["user"];
@@ -14,6 +14,6 @@ if (isset($invites[$user])) {
 $invites[$user] = array_filter($invites[$user] ?? [], function($i) {
     return time() - $i["time"] < 10;
 });
-save_invite ($invites)
+save_invite ($invites);
 header("Content-Type: application/json");
 echo json_encode($response);
