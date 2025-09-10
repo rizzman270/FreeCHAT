@@ -97,7 +97,7 @@
 						chatBox.innerHTML="";
 						data.forEach(m=>{
 							let div=document.createElement("div");
-							if (m.user == "<?=$user?>" || m.name == "Alice")
+							if (m.user == "<?=$user?>" || m.name == "<?=CHATBOT?>")
 								div.innerHTML="<div style='padding: 2px;'><span class='w3-hover-text-theme' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></span>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
 							else
 								div.innerHTML="<div style='padding: 2px;'><a class='w3-hover-text-theme' href='private.php?user="+ m.user +"' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></a>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";

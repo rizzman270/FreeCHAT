@@ -22,7 +22,7 @@ if (substr($text, 0, 1) === '/') {
 			$bans[$users[$parameters]]=true;
 			save_bans($bans);
 			$messages[$room][] = [
-				"name"=>"Alice",
+				"name"=>CHATBOT,
 				"text"=>"<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_banned"] ."</small>",
 				"color"=>"#C08856",
 				"style"=>"italic",
@@ -39,7 +39,7 @@ if (substr($text, 0, 1) === '/') {
 			unset($bans[$parameters]);
 			save_bans($bans);
 			$messages[$room][] = [
-				"name"=>"Alice",
+				"name"=>CHATBOT,
 				"text"=>"<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_unbanned"] ."</small>",
 				"color"=>"#C08856",
 				"style"=>"italic",
