@@ -60,7 +60,10 @@
 						table_theme = "w3-theme-white";
 					else
 						table_theme = "w3-theme-light";
-					tr.innerHTML = '<td class="w3-border '+ table_theme +' w3-border-theme-light w3-hover-text-theme" style="vertical-align: middle;"><a class="w3-link" href="private.php?user='+ user +'"><b><i class="fas '+ members[user].gender +'"></i> '+ members[user].name +'</b></td>';
+					if (members[user].invite == "no")
+						tr.innerHTML = '<td class="w3-border '+ table_theme +' w3-border-theme-light w3-hover-text-theme" style="vertical-align: middle;"><span class="w3-link"><b><i class="fas '+ members[user].gender +'"></i> '+ members[user].name +'</b></span></td>';
+					else
+						tr.innerHTML = '<td class="w3-border '+ table_theme +' w3-border-theme-light w3-hover-text-theme" style="vertical-align: middle;"><a class="w3-link" href="private.php?user='+ user +'"><b><i class="fas '+ members[user].gender +'"></i> '+ members[user].name +'</b></a></td>';
 					membersList.appendChild(tr);
 				});
 

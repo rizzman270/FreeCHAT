@@ -5,6 +5,7 @@
 	$other=$_GET["user"];
 	$users=load_users();
 	if(!$other || $user === $other) { die($lang["message"]["invalid_user"]); }
+	if ($users[$other]["invite"] == "no") { header("Location: login.php"); exit; }
 	$key = implode("|", array_sort([$user, $other]));
 	function array_sort($arr){
 		sort($arr, SORT_STRING);
