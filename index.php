@@ -253,6 +253,12 @@
 					container.appendChild(chatBox);
 					makeDraggable(chatBox);
 
+					fetch("core/private_invite.php", {
+						method: "POST",
+						headers: { "Content-Type": "application/x-www-form-urlencoded" },
+						body: "to="+ encodeURIComponent(username) +"&name="+ encodeURIComponent(name)
+					});
+
 					setInterval(loadPrivateMessages, 500, username);
 					setInterval(fetchPrivateTyping, 500, username);
 				}
@@ -308,6 +314,15 @@
 						el.style.right = "auto";
 					});
 				}
+
+				setInterval(async () => {
+					const res = await fetch("core/check_invites.php");
+					const invites = await res.json();
+
+					invites.forEach(invite => {
+						openPrivateChat(invite.from, invite.name);
+					});
+				}, 5000);
 
 				setInterval(fetchTyping, 500);
 				setInterval(loadOnlineUsers,1000);
