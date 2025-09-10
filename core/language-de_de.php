@@ -59,6 +59,14 @@ $lang["page"]["login"]="Anmelden";
 $lang["page"]["register"]="Registrieren";
 $lang["page"]["activity"]="Aktivität";
 
+$lang["lable"]["username"]="Benutzername";
+$lang["lable"]["password"]="Passwort";
+$lang["lable"]["name"]="Name";
+$lang["lable"]["gender"]="Geschlecht";
+$lang["lable"]["language"]="Sprache";
+$lang["lable"]["theme"]="Design";
+$lang["lable"]["invite"]="Privatchat";
+
 $lang["admin_rooms"]["title"]="Räume verwalten";
 $lang["admin_rooms"]["room"]="Raum";
 $lang["admin_rooms"]["description"]="Beschreibung";
@@ -98,4 +106,6 @@ $lang["users"]["search"]="Benutzer suchen...";
 
 $lang["invite"]["title"]="Private Chat-Anfrage";
 $lang["invite"]["text"]="Möchte einen privaten Chat starten.";
+$lang["invite"]["enable"]="Aktivieren";
+$lang["invite"]["disable"]="Deaktivieren";
 ?>

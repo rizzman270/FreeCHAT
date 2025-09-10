@@ -16,6 +16,8 @@
 		$users[$user]["theme"]=$theme;
 		$language=$_POST["language"];
 		$users[$user]["language"]=$language;
+		$invite=$_POST["invite"];
+		$users[$user]["invite"]=$invite;
 		save_users($users);
 		$_SESSION['lang']=$language;
 		$message=$lang["message"]["profile"];
@@ -60,6 +62,11 @@
 	else if ($users[$user]["theme"] == "light")
 		$lang_theme2="selected";
 
+	if ($users[$user]["invite"] == "yes")
+		$lang_invite1="selected";
+	else if ($users[$user]["invite"] == "no")
+		$lang_invite2="selected";
+
 	echo '
 		<form method="post" enctype="multipart/form-data">
 			<div class="w3-theme-white">
@@ -68,9 +75,11 @@
 				</header>
 				<div class="w3-half">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["name"] .'</lable>
 						<input class="w3-input" name="name" type="text" placeholder="Fullname" style="width: 100%" value="'. $users[$user]["name"] .'" minlength="8" maxlength="16" required>
 					</div>
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["gender"] .'</lable>
 						<select class="w3-select" name="gender">
 							<option value="fa-venus-mars" '. $gender_select1 .'>Hetero</option>
 							<option value="fa-venus-double" '. $gender_select2 .'>Lesbian</option>
@@ -90,6 +99,7 @@
 				</div>
 				<div class="w3-half">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["language"] .'</lable>
 						<select class="w3-select" name="language">
 							<option value="de_de" '. $lang_select1 .'>'. $lang["lang"]["de_de"] .'</option>
 							<option value="en_us" '. $lang_select2 .'>'. $lang["lang"]["en_us"] .'</option>
@@ -97,9 +107,19 @@
 						</select>
 					</div>
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["theme"] .'</lable>
 						<select class="w3-select" name="theme">
 							<option value="dark" '. $lang_theme1 .'>'. $lang["theme"]["dark"] .'</option>
 							<option value="light" '. $lang_theme2 .'>'. $lang["theme"]["light"] .'</option>
+						</select>
+					</div>
+				</div>
+				<div class="w3-half">
+					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["invite"] .'</lable>
+						<select class="w3-select" name="invite">
+							<option value="yes" '. $lang_invite1 .'>'. $lang["invite"]["enable"] .'</option>
+							<option value="no" '. $lang_invite2 .'>'. $lang["invite"]["disable"] .'</option>
 						</select>
 					</div>
 				</div>

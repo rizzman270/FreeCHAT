@@ -1,13 +1,9 @@
 <?php
 if(!is_dir('./data')) mkdir('./data', 0777, true);
 if(!is_dir('./data/upload')) mkdir('./data/upload', 0777, true);
-file_put_contents('./data/bans.json',json_encode([]));
-file_put_contents('./data/online.json',json_encode([]));
-file_put_contents('./data/messages.json',json_encode([]));
-file_put_contents('./data/private.json',json_encode([]));
 $defaultUsers = [
-	"Admin"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Admin","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","is_admin"=>true],
-	"Guest"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Guest","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","is_admin"=>false]
+	"Admin"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Admin","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","invite"=>"no","is_admin"=>true],
+	"Guest"=>["password"=>password_hash("Passw0rd",PASSWORD_DEFAULT),"name"=>"Guest","gender"=>"fa-mars","theme"=>"light","language"=>"en_us","invite"=>"no","is_admin"=>false]
 ];
 file_put_contents('./data/users.json',json_encode($defaultUsers));
 $defaultRooms = [
@@ -46,6 +42,5 @@ $defaultRooms = [
 	"Lifestyles & Exploration"=>["description"=>"Discussion of open relationships, swinging, BDSM, and other lifestyles."]
 ];
 file_put_contents('./data/rooms.json',json_encode($defaultRooms));
-file_put_contents('./data/typing.json',json_encode([]));
 header("location: login.php");
 ?>

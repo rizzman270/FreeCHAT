@@ -11,7 +11,7 @@ if(isset($_GET["logout"])){
         unset($online[$user]);
         save_online($online);
 		$messages[$room][] = [
-			"name"=>"Alice",
+			"name"=>CHATBOT,
 			"text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["left"] ."</small>",
 			"color"=>"#9E0F22",
 			"style"=>"italic",
@@ -27,7 +27,7 @@ $online[$user]=$room;
 save_online($online);
 if(!$alreadyInRoom){
     $messages[$room][] = [
-        "name"=>"Alice",
+		"name"=>CHATBOT,
         "text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["joined"] ."</small>",
         "color"=>"#062721",
         "style"=>"italic",

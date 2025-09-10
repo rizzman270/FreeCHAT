@@ -9,6 +9,7 @@ foreach($online as $u=>$r){
         $result[] = [
             "user"=>$u,
             "name"=>$users[$u]["name"],
+            "invite"=>$users[$u]["invite"],
             "icon"=>$users[$u]["gender"]
         ];
     }

@@ -37,7 +37,7 @@
 			}
 		</script>
 	</head>
-	<body class=" w3-theme-white">
+	<body class="w3-theme-white">
 		<div class="w3-bar w3-top w3-theme w3-large" style="z-index: 4;">
 			<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-gray w3-right" onclick="sidebar_handle();"><strong><i class="fas fa-bars"></i> <?php echo $lang["page"]["menu"]; ?></strong></button>
 			<span class="w3-bar-item w3-button w3-hide-small w3-hover-none w3-hover-text-light-gray w3-right"><?php echo $lang["page"]["welcome"]; ?> <strong><?php echo $users[$user]["name"]; ?></strong></span>

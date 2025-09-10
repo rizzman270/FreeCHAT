@@ -181,8 +181,8 @@
 					}
 				});
 
-				setInterval(fetchTyping, 500);
-				setInterval(fetchPrivate, 500);
+				setInterval(fetchTyping, <?=TYPINGINTERVAL?>);
+				setInterval(fetchPrivate, <?=PRIVATEINTERVAL?>);
 			</script>
 
 

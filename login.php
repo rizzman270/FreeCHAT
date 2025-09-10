@@ -31,11 +31,13 @@
 				</header>
 				<div class="w3-half">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["username"] .'</lable>
 						<input class="w3-input" name="username" type="text" placeholder="'. $lang["login"]["username"] .'" style="width: 100%" required>
 					</div>
 				</div>
 				<div class="w3-half">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["password"] .'</lable>
 						<input class="w3-input" name="password" type="text" placeholder="'. $lang["login"]["password"] .'" style="width: 100%" required>
 					</div>
 				</div>

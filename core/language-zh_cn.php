@@ -59,6 +59,14 @@ $lang["page"]["login"]="登录";
 $lang["page"]["register"]="注册";
 $lang["page"]["activity"]="活动";
 
+$lang["lable"]["username"]="用户名";
+$lang["lable"]["password"]="密码";
+$lang["lable"]["name"]="姓名";
+$lang["lable"]["gender"]="性别";
+$lang["lable"]["language"]="语言";
+$lang["lable"]["theme"]="主题";
+$lang["lable"]["invite"]="私聊";
+
 $lang["admin_rooms"]["title"]="管理房间";
 $lang["admin_rooms"]["room"]="房间";
 $lang["admin_rooms"]["description"]="描述";
@@ -98,4 +106,6 @@ $lang["users"]["search"]="搜索用户...";
 
 $lang["invite"]["title"]="私聊请求";
 $lang["invite"]["text"]="想要开始私聊。";
+$lang["invite"]["enable"]="启用";
+$lang["invite"]["disable"]="禁用";
 ?>

@@ -74,7 +74,7 @@
 	';
 ?>
 
-			<div class="w3-hide-small" id="inviteModal" style="background: rgba(0,0,0,0.6); display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; justify-content: center; align-items: center; z-index: 2000;">
+			<div class="w3-hide-small w3-invite" id="inviteModal">
 				<div class="w3-border w3-border-theme-light w3-theme-white">
 					<header class="w3-container w3-theme">
 						<h4><?=$lang["invite"]["title"]?></h4>
@@ -110,7 +110,7 @@
 						chatBox.innerHTML="";
 						data.forEach(m=>{
 							let div=document.createElement("div");
-							if (m.user == "<?=$user?>" || m.name == "<?=CHATBOT?>")
+							if (m.user == "<?=$user?>" || m.name == "<?=CHATBOT?>" || m.invite == "no")
 								div.innerHTML="<div style='padding: 2px;'><span class='w3-hover-text-theme' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></span>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
 							else
 								div.innerHTML="<div style='padding: 2px;'><a class='w3-hover-text-theme' href='private.php?user="+ m.user +"' style='text-decoration: none;'><i class='fas "+ m.icon.toLowerCase() +"'></i> <strong>"+ m.name +"</strong></a>: <span class='w3-right w3-tiny'>"+ m.time +"</span><span style='font-style: "+ m.style +"; color: "+ m.color +";'>"+ m.text +"</span></div>";
@@ -142,7 +142,7 @@
 					fetch("core/online.php?room=<?=urlencode($room)?>").then(r=>r.json()).then(data=>{
 						let list = "";
 						data.forEach(u=>{
-							if (u.user == "<?=$user?>")
+							if (u.user == "<?=$user?>" || u.invite == "no")
 								list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme'><i class='fas fa-comments'></i></span> <span class='w3-hover-text-theme'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></span></div>";
 							else
 								list += "<div style='padding: 2px;'><span class='w3-hide-small w3-hover-text-theme' onclick='openPrivateChat(\""+ u.user +"\",\""+ u.name +"\")' style='cursor: pointer'><i class='fas fa-comments'></i></span> <a class='w3-hover-text-theme' href='private.php?user="+ u.user +"' style='text-decoration: none;'><i class='fas "+ u.icon.toLowerCase() +"'></i> <strong>"+ u.name +"</strong></a></div>";
@@ -357,8 +357,6 @@
 					});
 				}
 
-				setInterval(check_invites, 5000);
-
 				document.getElementById("acceptInvite").addEventListener("click", () => {
 					if (!currentInviteFrom) return;
 					document.getElementById("inviteModal").style.display = "none";
@@ -382,10 +380,11 @@
 					currentInviteFrom = null;
 				});
 
-				setInterval(fetchTyping, 500);
-				setInterval(loadOnlineUsers,1000);
-				setInterval(fetchMessages,500);
-				setInterval(heartbeat,1000);
+				setInterval(fetchTyping, <?=PRIVATEINTERVAL?>);
+				setInterval(loadOnlineUsers, <?=ONLINEINTERVAL?>);
+				setInterval(check_invites, <?=INVITEINTERVAL?>);
+				setInterval(fetchMessages, <?=MESSAGEINTERVAL?>);
+				setInterval(heartbeat, <?=HEARTBEATINTERVAL?>);
 			</script>
 
 <?php

@@ -9,7 +9,7 @@
 		$gen=$_POST["gender"];
 		$language=$_POST["language"];
 		if($user && $pass && !isset($users[$user])){
-			$users[$user]=["password"=>password_hash($pass,PASSWORD_DEFAULT),"name"=>$name,"gender"=>$gen,"language"=>$language,"theme"=>"light","is_admin"=>count($users)==0];
+			$users[$user]=["password"=>password_hash($pass,PASSWORD_DEFAULT),"name"=>$name,"gender"=>$gen,"language"=>$language,"theme"=>"light","invite"=>"yes","is_admin"=>count($users)==0];
 			save_users($users);
 			$_SESSION["user"]=$user;
 			$_SESSION['lang']=$language;
@@ -31,20 +31,24 @@
 				</header>
 				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["username"] .'</lable>
 						<input class="w3-input" name="username" type="text" placeholder="'. $lang["register"]["username"] .'" style="width: 100%" minlength="3" maxlength="16" required>
 					</div>
 				</div>
 				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["password"] .'</lable>
 						<input class="w3-input" name="password" type="text" placeholder="'. $lang["register"]["password"] .'" style="width: 100%" minlength="8" maxlength="16" required>
 					</div>
 				</div>
 				<div class="w3-third">
 					<div class="w3-row-padding w3-margin-bottom">
+						<lable>'. $lang["lable"]["name"] .'</lable>
 						<input class="w3-input" name="name" type="text" placeholder="'. $lang["register"]["name"] .'" style="width: 100%" minlength="3" maxlength="16" required>
 					</div>
 				</div>
 				<div class="w3-half">
+					<lable>'. $lang["lable"]["gender"] .'</lable>
 					<div class="w3-row-padding w3-margin-bottom">
 						<select class="w3-select" id="style" name="gender">
 							<option value="fa-venus-mars">Hetero</option>
@@ -64,6 +68,7 @@
 					</div>
 				</div>
 				<div class="w3-half">
+					<lable>'. $lang["lable"]["language"] .'</lable>
 					<div class="w3-row-padding w3-margin-bottom">
 						<select class="w3-select" id="style" name="language">
 							<option value="de_de">'. $lang["lang"]["de_de"] .'</option>

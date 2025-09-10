@@ -74,7 +74,7 @@ if ($use_command != 1) {
 	$text = parse_bbcode($text);
 	$text = parse_emoji($text);
 	if(!isset($messages[$room])) $messages[$room]=[];
-	$messages[$room][]=["icon"=>$users[$user]["gender"],"user"=>$user,"name"=>$users[$user]["name"],"text"=>$text,"color"=>$color,"style"=>$style,"time"=>date("H:i:s")];
+	$messages[$room][]=["icon"=>$users[$user]["gender"],"invite"=>$users[$user]["invite"],"user"=>$user,"name"=>$users[$user]["name"],"text"=>$text,"color"=>$color,"style"=>$style,"time"=>date("H:i:s")];
 	save_messages($messages);
 }
 echo "ok";
