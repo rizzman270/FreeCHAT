@@ -6,6 +6,6 @@ if(!$me || !$other) exit;
 $key = [$me, $other];
 sort($key, SORT_STRING);
 $key = implode("|", $key);
-$privates = file_exists("../data/private.json") ? json_decode(file_get_contents("../data/private.json"), true) : [];
+$privates = load_private ();
 $messages = $privates[$key];
 echo json_encode(array_slice($messages, -27));

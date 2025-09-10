@@ -9,7 +9,7 @@ if(isset($_SESSION["user"])){
     save_online($online);
     $messages = load_messages();
     $messages[$room][] = [
-        "name"=>"Alice",
+		"name"=>CHATBOT,
         "text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["logout"] ."</small>",
         "color"=>"#C08856",
         "style"=>"italic",

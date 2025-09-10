@@ -1,4 +1,7 @@
 <?php
+function load_json($file){ $path = DATA_DIR."/".$file; return file_exists($path) ? json_decode(file_get_contents($path), true) : []; }
+function save_json($file,$data){ file_put_contents(DATA_DIR."/".$file,json_encode($data)); }
+
 $ImageIcon = "📷";
 $emojiIcon = "😀";
 
@@ -10,6 +13,26 @@ function parse_emoji($text) {
 
 	return $text;
 }
+
+function load_users(){ return load_json("users.json"); }
+function save_users($data){ save_json("users.json",$data); }
+function load_rooms(){ return load_json("rooms.json"); }
+function save_rooms($data){ save_json("rooms.json",$data); }
+function load_messages(){ return load_json("messages.json"); }
+function save_messages($data){ save_json("messages.json",$data); }
+function load_bans(){ return load_json("bans.json"); }
+function save_bans($data){ save_json("bans.json",$data); }
+function load_online(){ return load_json("online.json"); }
+function save_online($data){ save_json("online.json",$data); }
+function load_emoji(){ return load_json("../assets/emoji.json"); }
+function load_invite(){ return load_json("invites.json"); }
+function save_invite($data){ save_json("invites.json",$data); }
+function load_typing_private(){ return load_json("typing_private.json"); }
+function save_typing_private($data){ save_json("typing_private.json",$data); }
+function load_typing(){ return load_json("typing.json"); }
+function save_typing($data){ save_json("typing.json",$data); }
+function load_private(){ return load_json("private.json"); }
+function save_private($data){ save_json("private.json",$data); }
 
 function filter_badword($text) {
 	$badwords = ["shit", "bullshit", "piss", "pissed", "ass", "asshole", "bastard", "bitch", "sonofabitch", "dick", "dickhead", "cock", "cocksucker", "prick", "pussy", "slut", "whore", "cum", "cumshot", "blowjob", "handjob", "tit", "tits", "boobs", "boobies", "vagina", "penis", "balls", "nuts", "wanker", "jerkoff", "motherfucker", "goddamn", "damn", "crap", "twat", "cunt", "arse", "arsehole", "retard", "idiot", "moron", "loser", "kill", "die", "murder", "rape", "rapist", "nazi"];

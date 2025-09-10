@@ -2,8 +2,7 @@
 require "config.php";
 $user=$_GET["user"] ?? "";
 if (!$user) exit;
-$typingFile = "../data/typing_private.json";
-$typing = file_exists($typingFile) ? json_decode(file_get_contents($typingFile), true) : [];
+$typing = load_typing_private();
 $response = ["typing" => false];
 if (isset($typing[$_SESSION["user"]])) {
     foreach ($typing[$_SESSION["user"]] as $sender => $time) {
@@ -14,3 +13,5 @@ if (isset($typing[$_SESSION["user"]])) {
 }
 header("Content-Type: application/json");
 echo json_encode($response);
+
+
