@@ -19,6 +19,8 @@ $lang["button"]["save"]="保存";
 $lang["button"]["send"]="发送";
 $lang["button"]["accept"]="接受";
 $lang["button"]["decline"]="拒绝";
+$lang["button"]["photo"]="照片";
+$lang["button"]["emoji"]="表情符号";
 
 $lang["message"]["is_admin"]="访问被拒绝。";
 $lang["message"]["add"]="- 房间已添加";

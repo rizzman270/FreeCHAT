@@ -5,7 +5,7 @@ if (!isset($_SESSION["user"])) {
     http_response_code(403);
     exit($lang["message"]["logged"]);
 }
-$uploadDir = DATA_DIR."/upload/";
+$uploadDir = UPLOADDIR;
 if (!isset($_FILES["image"]))
     exit($lang["message"]["no_file"]);
 $file = $_FILES["image"];

@@ -19,6 +19,8 @@ $lang["button"]["save"]="Save";
 $lang["button"]["send"]="Send";
 $lang["button"]["accept"]="Accept";
 $lang["button"]["decline"]="Decline";
+$lang["button"]["photo"]="Photo";
+$lang["button"]["emoji"]="Emoji";
 
 $lang["message"]["is_admin"]="Access denied.";
 $lang["message"]["add"]="- Room added";
