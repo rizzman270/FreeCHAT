@@ -65,4 +65,18 @@ function parse_bbcode($text) {
         $text = preg_replace($pattern, $replace, $text);
     return $text;
 }
+
+function encryptMessage($message) {
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length("AES-256-CBC"));
+    $encrypted = openssl_encrypt($message, "AES-256-CBC", SECRETKEY, 0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
+function decryptMessage($encoded) {
+    $data = base64_decode($encoded);
+    $ivLength = openssl_cipher_iv_length("AES-256-CBC");
+    $iv = substr($data, 0, $ivLength);
+    $ciphertext = substr($data, $ivLength);
+    return openssl_decrypt($ciphertext, "AES-256-CBC", SECRETKEY, 0, $iv);
+}
 ?>

@@ -12,13 +12,13 @@ if(isset($_GET["logout"])){
         save_online($online);
 		$messages[$room][] = [
 			"name"=>CHATBOT,
-			"text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["left"] ."</small>",
+			"text"=>encryptMessage("<small>". $users[$user]['name'] ." ". $lang["message"]["left"] ."</small>"),
 			"color"=>"#9E0F22",
 			"style"=>"italic",
 			"icon"=>"fa-genderless",
 			"time"=>date("H:i:s")
 		];
-        save_messages($messages);
+		save_messages($messages);
     }
     exit;
 }
@@ -28,11 +28,11 @@ save_online($online);
 if(!$alreadyInRoom){
     $messages[$room][] = [
 		"name"=>CHATBOT,
-        "text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["joined"] ."</small>",
+        "text"=>encryptMessage("<small>". $users[$user]['name'] ." ". $lang["message"]["joined"] ."</small>"),
         "color"=>"#062721",
         "style"=>"italic",
         "icon"=>"fa-genderless",
         "time"=>date("H:i:s")
     ];
-    save_messages($messages);
+	save_messages($messages);
 }

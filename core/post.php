@@ -23,7 +23,7 @@ if (substr($text, 0, 1) === '/') {
 			save_bans($bans);
 			$messages[$room][] = [
 				"name"=>CHATBOT,
-				"text"=>"<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_banned"] ."</small>",
+				"text"=>encryptMessage("<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_banned"] ."</small>"),
 				"color"=>"#C08856",
 				"style"=>"italic",
 				"icon"=>"fa-genderless",
@@ -40,7 +40,7 @@ if (substr($text, 0, 1) === '/') {
 			save_bans($bans);
 			$messages[$room][] = [
 				"name"=>CHATBOT,
-				"text"=>"<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_unbanned"] ."</small>",
+				"text"=>encryptMessage("<small>". $users[$parameters]['name'] ." ". $lang["message"]["post_unbanned"] ."</small>"),
 				"color"=>"#C08856",
 				"style"=>"italic",
 				"icon"=>"fa-genderless",
@@ -74,7 +74,7 @@ if ($use_command != 1) {
 	$text = parse_bbcode($text);
 	$text = parse_emoji($text);
 	if(!isset($messages[$room])) $messages[$room]=[];
-	$messages[$room][]=["icon"=>$users[$user]["gender"],"invite"=>$users[$user]["invite"],"user"=>$user,"name"=>$users[$user]["name"],"text"=>$text,"color"=>$color,"style"=>$style,"time"=>date("H:i:s")];
+	$messages[$room][]=["icon"=>$users[$user]["gender"],"invite"=>$users[$user]["invite"],"user"=>$user,"name"=>$users[$user]["name"],"text"=>encryptMessage($text),"color"=>$color,"style"=>$style,"time"=>date("H:i:s")];
 	save_messages($messages);
 }
 echo "ok";

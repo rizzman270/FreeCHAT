@@ -10,7 +10,7 @@ if(isset($_SESSION["user"])){
     $messages = load_messages();
     $messages[$room][] = [
 		"name"=>CHATBOT,
-        "text"=>"<small>". $users[$user]['name'] ." ". $lang["message"]["logout"] ."</small>",
+        "text"=>encryptMessage("<small>". $users[$user]['name'] ." ". $lang["message"]["logout"] ."</small>"),
         "color"=>"#C08856",
         "style"=>"italic",
         "icon"=>"fa-genderless",
